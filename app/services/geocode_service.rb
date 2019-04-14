@@ -1,6 +1,6 @@
 class GeocodeService
   def initialize(city, state)
-    @city = city.gsub(" ", "+")
+    @city = city&.gsub(" ", "+")
     @state = state
   end
 
