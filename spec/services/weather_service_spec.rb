@@ -1,4 +1,4 @@
-reqire 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe WeatherService, type: :service do
   before :each do
@@ -10,7 +10,7 @@ RSpec.describe WeatherService, type: :service do
     @service = WeatherService.new(@coordinates)
   end
   it 'exists' do
-    expect(service).to be_a WeatherService
+    expect(@service).to be_a WeatherService
   end
 
   describe 'instance methods' do
@@ -21,7 +21,7 @@ RSpec.describe WeatherService, type: :service do
         expect(results).to be_a Hash
         expect(results).to have_key :currently
         expect(results).to have_key :hourly
-        expect(results).to have_ley :daily
+        expect(results).to have_key :daily
 
         current_results = results[:currently]
 
@@ -56,8 +56,6 @@ RSpec.describe WeatherService, type: :service do
         expect(daily_results[:data]).to be_a Array
         expect(daily_results[:data][0]).to have_key :time
         expect(daily_results[:data][0]).to have_key :precipProbability
-        expect(daily_results[:data][0]).to have_key :temperature
-        expect(daily_results[:data][0]).to have_key :apparentTemperature
         expect(daily_results[:data][0]).to have_key :humidity
         expect(daily_results[:data][0]).to have_key :uvIndex
         expect(daily_results[:data][0]).to have_key :visibility
