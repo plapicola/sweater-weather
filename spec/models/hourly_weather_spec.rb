@@ -10,11 +10,8 @@ RSpec.describe HourlyWeather do
   it 'has_attributes' do
     forecast_info = {
       temperature: 65,
-      perceived_temperature: 62,
       weather: "Partly Cloudy",
-      humidity: 35.07,
-      visibility: 11.5,
-      uv_index: 2,
+      hour: 11
     }
     current_forecast = HourlyWeather.new(forecast_info)
 
@@ -31,9 +28,9 @@ RSpec.describe HourlyWeather do
         hourly_weather = HourlyWeather.from_request(parsed_request)
 
         expect(hourly_weather).to be_a Array
-        expect(hourly_Weather[0]).to be_a HourlyWeather
-        expect(hourly_weather[0].hour).to eq(11)
-        expect(hourly_weather[0].weather).to eq("Mostly Cloudy")
+        expect(hourly_weather[0]).to be_a HourlyWeather
+        expect(hourly_weather[0].hour).to eq(9)
+        expect(hourly_weather[0].weather).to eq("Partly Cloudy")
         expect(hourly_weather[0].temperature).to eq(40.04)
       end
     end
