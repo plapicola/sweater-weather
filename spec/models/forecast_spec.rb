@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Forecast do
   it 'exists' do
-    forecast = Forecast.new({})
+    forecast = Forecast.new(city: 'denver', state: 'co')
 
     expect(forecast).to be_a Forecast
   end
