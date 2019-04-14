@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe CurrentForecast do
+RSpec.describe CurrentWeather do
   it 'exists' do
-    current_forecast = CurrentForecast.new({})
+    current_forecast = CurrentWeather.new({})
 
-    expect(current_forecast).to be_a CurrentForecast
+    expect(current_forecast).to be_a CurrentWeather
   end
 
   it 'has_attributes' do
@@ -20,7 +20,7 @@ RSpec.describe CurrentForecast do
       current_description: "Partly cloudy until evening",
       future_description: "Clear skies through night"
     }
-    current_forecast = CurrentForecast.new(forecast_info)
+    current_forecast = CurrentWeather.new(forecast_info)
 
     forecast_info.each do |key, value|
       expect(current_forecast.send(key)).to eq(value)

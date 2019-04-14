@@ -5,7 +5,7 @@ RSpec.describe 'Forecast API', type: :request do
     it "I can request the current forecast for a city, state" do
       get '/api/v1/forecast?location=denver,co'
 
-      weather_info = JSON.parse(response.body)[:data]
+      weather_info = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(weather_info).to have_key :id
       expect(weather_info).to have_key :attributes

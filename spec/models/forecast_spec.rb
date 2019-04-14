@@ -13,7 +13,7 @@ RSpec.describe Forecast do
     expect(forecast.id).to eq("denver, co")
     expect(forecast.city).to eq("denver")
     expect(forecast.state).to eq("co")
-    expect(forecast.current_weather).to be_a CurrentForecast
+    expect(forecast.current_weather).to be_a CurrentWeather
     expect(forecast.hourly_forecasts).to be_a Array
     expect(forecast.daily_forecasts).to be_a Array
   end

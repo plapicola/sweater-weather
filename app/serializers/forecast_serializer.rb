@@ -1,18 +1,9 @@
 class ForecastSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name
+  attributes :id, :name
 
   attribute :current_weather do
-    attributes :current_temperature,
-               :perceived_temperature,
-               :max_temperature,
-               :min_temperature,
-               :current_weather,
-               :humidity,
-               :visibility,
-               :uv_index,
-               :current_description,
-               :future_description
+    # Come back to this, consider nested serializer?
   end
 
   attribute :hourly_forecast do

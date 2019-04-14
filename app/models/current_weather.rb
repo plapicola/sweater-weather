@@ -1,4 +1,4 @@
-class CurrentForecast
+class CurrentWeather
   attr_reader :current_temperature,
               :perceived_temperature,
               :max_temperature,
