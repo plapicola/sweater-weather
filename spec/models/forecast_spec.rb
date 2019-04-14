@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.descrive Forecast do
+RSpec.describe Forecast do
   it 'exists' do
     forecast = Forecast.new({})
 
@@ -8,13 +8,13 @@ RSpec.descrive Forecast do
   end
 
   it 'has attributes' do
-    forecast = Forecast.new([["denver"], ["co"]])
+    forecast = Forecast.new({city: "denver", state: "co"})
 
-    expect(forecast.id).to eq("Denver, CO")
-    expect(forecast.city).to eq("Denver")
-    expect(forecast.state).to eq("CO")
+    expect(forecast.id).to eq("denver, co")
+    expect(forecast.city).to eq("denver")
+    expect(forecast.state).to eq("co")
     expect(forecast.current_weather).to be_a CurrentForecast
     expect(forecast.hourly_forecasts).to be_a Array
-    expect(forecast.daily_forecast).to be_a Array
+    expect(forecast.daily_forecasts).to be_a Array
   end
 end
