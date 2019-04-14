@@ -11,7 +11,7 @@ RSpec.describe 'Forecast API', type: :request do
       expect(weather_info).to have_key :attributes
       expect(weather_info[:attributes]).to have_key :name
       expect(weather_info[:attributes][:name]).to eq 'Denver, CO'
-      expect(weather_info[:attributes]).to have_key :current
+      expect(weather_info[:attributes]).to have_key :current_weather
       expect(weather_info[:attributes]).to have_key :hourly_forecast
       expect(weather_info[:attributes]).to have_key :daily_forecast
 
