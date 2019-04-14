@@ -32,7 +32,7 @@ RSpec.describe DailyWeather do
 
         expect(daily_weather).to be_a Array
         expect(daily_weather[0].day).to eq("Sunday")
-        expect(daily_weather[0].weather).to eq("Mostly cloudy throughout the day")
+        expect(daily_weather[0].weather).to eq("Mostly cloudy throughout the day.")
         expect(daily_weather[0].percipitation_chance).to eq(0.05)
         expect(daily_weather[0].max_temperature).to eq(67.31)
         expect(daily_weather[0].min_temperature).to eq(40.67)
