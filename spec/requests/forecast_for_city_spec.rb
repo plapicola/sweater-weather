@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Forecast API', type: :request do
   context 'as a visitor' do
     it "I can request the current forecast for a city, state" do
-      get '/api/v1/forecast?denver,co'
+      get '/api/v1/forecast?location=denver,co'
 
       weather_info = JSON.parse(response.body)[:data]
 
