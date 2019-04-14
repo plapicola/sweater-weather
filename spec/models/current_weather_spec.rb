@@ -43,7 +43,7 @@ RSpec.describe CurrentWeather do
         expect(current_weather.humidity).to eq(0.4)
         expect(current_weather.visibility).to eq(9.78)
         expect(current_weather.uv_index).to eq(3)
-        expect(current_weather.current_description).to eq("Partly Cloudy")
+        expect(current_weather.current_description).to eq("Mostly Cloudy")
         expect(current_weather.future_description).to eq("Mostly Cloudy")
       end
     end
