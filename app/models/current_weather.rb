@@ -1,5 +1,6 @@
 class CurrentWeather
-  attr_reader :current_temperature,
+  attr_reader :id,
+              :current_temperature,
               :perceived_temperature,
               :max_temperature,
               :min_temperature,
@@ -11,6 +12,7 @@ class CurrentWeather
               :future_description
 
   def initialize(weather_info)
+    @id = weather_info[:id]
     @current_temperature = weather_info[:current_temperature]
     @perceived_temperature = weather_info[:perceived_temperature]
     @max_temperature = weather_info[:max_temperature]
@@ -25,6 +27,7 @@ class CurrentWeather
 
   def self.from_request(request)
     new({
+      id: Time.now.to_i,
       current_temperature: request[:currently][:temperature],
       perceived_temperature: request[:currently][:apparentTemperature],
       max_temperature: request[:daily][:data][0][:temperatureHigh],
