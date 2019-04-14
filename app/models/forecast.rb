@@ -12,11 +12,14 @@ class Forecast
   end
 
   def current_weather
+    CurrentForecast.new({})
   end
 
   def hourly_forecasts
+    []
   end
 
   def daily_forecasts
+    []
   end
 end
