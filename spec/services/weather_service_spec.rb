@@ -4,7 +4,7 @@ RSpec.describe WeatherService, type: :service do
   before :each do
     @coordinates = {
       lat: 39.7392358,
-      long: -104.990251
+      lng: -104.990251
     }
 
     @service = WeatherService.new(@coordinates)

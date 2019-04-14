@@ -1,7 +1,7 @@
 class WeatherService
   def initialize(location_args)
     @latitude = location_args[:lat]
-    @longitude = location_args[:long]
+    @longitude = location_args[:lng]
   end
 
   def get_forecast
