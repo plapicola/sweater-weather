@@ -26,13 +26,13 @@ RSpec.describe GeocodeService, type: :service do
         service = GeocodeService.new
 
         coordinates = {
-          lat: 39.7392358,
-          lng: -104.990251
+          lat: -22.561968,
+          lng: -65.5705001
         }
 
         result = service.reverse_geocode(coordinates)
 
-        expect(result).to eq("Denver, CO, USA")
+        expect(result).to eq("Jujuy, Argentina")
       end
     end
   end

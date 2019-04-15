@@ -7,10 +7,20 @@ class GeocodeService
     parse(request_coordinates(city, state))[:results][0]
   end
 
+  def reverse_geocode(coordinates)
+    parse(request_reverse_geocode(coordinates))[:results][1][:formatted_address]
+  end
+
   private
 
   def parse(response)
     JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def request_reverse_geocode(coordinates)
+    conn.get do |req|
+      req.params[:latlng] = "#{coordinates[:lat]},#{coordinates[:lng]}"
+    end
   end
 
   def request_coordinates(city, state)
