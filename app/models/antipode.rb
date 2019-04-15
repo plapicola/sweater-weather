@@ -2,7 +2,7 @@ class Antipode
   attr_reader :search_location,
               :location_name,
               :forecast
-              
+
   def initialize(location_info)
     @city = location_info[:city]
     @search_location = geocode_city
@@ -10,6 +10,10 @@ class Antipode
     @antipode_coordinates = request_antipode
     @location_name = reverse_geocode
     @forecast = get_antipode_forecast
+  end
+
+  def id
+    1
   end
 
   private

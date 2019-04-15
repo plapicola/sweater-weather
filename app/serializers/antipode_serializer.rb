@@ -1,8 +1,18 @@
 class AntipodeSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :location_name, :search_location
+  attributes :id,
+             :location_name
+
+  meta do |antipode|
+    {
+      search_location: antipode.search_location
+    }
+  end
 
   attribute :forecast do |obj|
-    CurrentWeatherSerializer.new(obj.forecast)
+    {
+      summary: obj.forecast.current_weather,
+      current_temperature: obj.forecast.current_temperature
+    }
   end
 end
