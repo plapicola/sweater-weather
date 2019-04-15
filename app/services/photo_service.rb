@@ -20,6 +20,7 @@ class PhotoService
       req.params[:tags] = "skyline"
       req.params[:lat] = @latitude
       req.params[:lon] = @longitude
+      req.params[:radius] = 32 # 32 km radius is max
     end
   end
 
