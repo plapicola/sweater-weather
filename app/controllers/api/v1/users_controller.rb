@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       user_key = {api_key: SecureRandom.hex}
       user.update(user_key)
-      render json: user_key
-    end
+      render json: user_key, status: :created
+    end # Add edge case?
   end
 
   private
