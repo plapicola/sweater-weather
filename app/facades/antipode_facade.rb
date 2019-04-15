@@ -17,20 +17,20 @@ class AntipodeFacade
 
   private
 
-  def request_antipode
-    antipode_service.get_antipode(geocode_coordinates)
+  def geocode_city
+    geocode_location[:formatted_address]
   end
 
-  def get_antipode_forecast
-    CurrentWeather.from_request(weather_service.get_forecast)
+  def request_antipode
+    antipode_service.get_antipode(geocode_coordinates)
   end
 
   def geocode_coordinates
     geocode_location[:geometry][:location]
   end
 
-  def geocode_city
-    geocode_location[:formatted_address]
+  def get_antipode_forecast
+    CurrentWeather.from_request(weather_service.get_forecast)
   end
 
   def reverse_geocode
