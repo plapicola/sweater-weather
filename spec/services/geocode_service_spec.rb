@@ -26,13 +26,13 @@ RSpec.describe GeocodeService, type: :service do
         service = GeocodeService.new
 
         coordinates = {
-          lat: -22.561968,
-          lng: -65.5705001
+          lat: -22.3193039,
+          lng: -65.8306389
         }
 
         result = service.reverse_geocode(coordinates)
 
-        expect(result).to eq("Jujuy, Argentina")
+        expect(result).to eq("Yavi Department")
       end
     end
   end

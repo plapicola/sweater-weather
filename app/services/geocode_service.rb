@@ -4,17 +4,17 @@ class GeocodeService
   end
 
   def get_location(city, state = nil)
-    parse(request_coordinates(city, state))[:results][0]
+    parse(request_coordinates(city, state))
   end
 
   def reverse_geocode(coordinates)
-    parse(request_reverse_geocode(coordinates))[:results][1][:formatted_address]
+    parse(request_reverse_geocode(coordinates))[:address_components][0][:long_name]
   end
 
   private
 
   def parse(response)
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(response.body, symbolize_names: true)[:results][0]
   end
 
   def request_reverse_geocode(coordinates)

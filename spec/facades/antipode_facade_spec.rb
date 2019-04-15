@@ -14,7 +14,7 @@ RSpec.describe AntipodeFacade, type: :facade do
     antipode = AntipodeFacade.new(location_info)
 
     expect(antipode.search_location).to eq("Hong Kong")
-    expect(antipode.location_name).to eq("Jujuy")
+    expect(antipode.location_name).to eq("Yavi Department")
     expect(antipode.forecast).to be_a CurrentWeather
   end
 end
