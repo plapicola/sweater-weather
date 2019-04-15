@@ -5,7 +5,7 @@ RSpec.describe 'antipode api' do
     it 'Returns the current weather at the antipode for a provided city' do
       get '/api/v1/antipode?location=hongkong'
 
-      antipode = JSON.parse(response.body, symbolize_names: true)[:data]
+      antipode = JSON.parse(response.body, symbolize_names: true)[:data][0]
 
       expect(antipode).to be_a Hash
       expect(antipode).to have_key :id
