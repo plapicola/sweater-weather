@@ -14,6 +14,7 @@ RSpec.describe 'Users API', type: :request do
 
       expect(response.status).to eq(201)
       expect(results).to have_key :api_key
+      expect(User.count).to eq(1)
     end
   end
 end
