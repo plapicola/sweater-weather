@@ -5,7 +5,7 @@ RSpec.describe 'Backgrounds API' do
     it 'I can request a background image for a location' do
       get '/api/v1/backgrounds?location=denver,co'
 
-      image = JSON.parse(response.body, symbolize_names: true)[:data][0]
+      image = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(image).to be_a Hash
       expect(image).to have_key :attributes
