@@ -20,9 +20,9 @@ RSpec.describe AntipodeService, type: :service do
         antipode = service.get_antipode(search_location)
 
         expect(antipode).to have_key :lat
-        expect(antipode).to have_key :long
+        expect(antipode).to have_key :lng
         expect(antipode[:lat]).to eq(-22.561968)
-        expect(antipode[:long]).to eq(-65.5705001)
+        expect(antipode[:lng]).to eq(-65.5705001)
       end
     end
   end

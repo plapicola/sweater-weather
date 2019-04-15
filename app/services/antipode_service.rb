@@ -1,6 +1,10 @@
 class AntipodeService
   def get_antipode(coordinates)
-    parse(request_antipode(coordinates[:lat], coordinates[:lng]))[:attributes]
+    result = parse(request_antipode(coordinates[:lat], coordinates[:lng]))
+    {
+      lat: result[:attributes][:lat],
+      lng: result[:attributes][:long]
+    }
   end
 
   private
