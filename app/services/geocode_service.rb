@@ -1,10 +1,10 @@
 class GeocodeService
   def get_coordinates(city, state = nil)
-    get_location(city, state)[:results][0][:geometry][:location]
+    get_location(city, state)[:geometry][:location]
   end
 
   def get_location(city, state = nil)
-    parse(request_coordinates(city, state))
+    parse(request_coordinates(city, state))[:results][0]
   end
 
   private

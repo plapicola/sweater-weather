@@ -1,8 +1,9 @@
 class Antipode
   def initialize(location_info)
     @city = location_info[:city]
-    @search_location =
-    @antipode_location =
+    @search_location = geocode_city
+    @search_coordinates = geocode_coordinates[
+    @antipode_location = request_anti
     @forecast = get_antipode_forecast
   end
 
@@ -11,12 +12,21 @@ class Antipode
   def get_antipode_forecast
   end
 
-  def request_location
-    geocode_service.get_coordinates(@city)
+  def geocode_coordinates
+    geocode_location[:geometry]
+  end
+
+  def geocode_city
+    geocode_location[:formatted_address]
+  end
+
+  def geocode_location
+    @location ||= geocode_service.get_location(@city)
   end
 
   def geocode_service
-    @service
+    @service ||= GeocodeService.new
+  end
 end
 
 # Steps: Geocode City, store result name
