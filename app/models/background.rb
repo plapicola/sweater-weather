@@ -20,7 +20,7 @@ class Background
   end
 
   def request_location
-    @coordinates ||= GeocodeService.new(@city, @state).get_coordinates
+    @coordinates ||= GeocodeService.new.get_coordinates(@city, @state)
   end
 
   def request_photograph(location)

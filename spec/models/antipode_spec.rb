@@ -11,6 +11,7 @@ RSpec.describe Antipode do
     location_info = {
       city: "hongkong"
     }
+    antipode = Antipode.new(location_info)
 
     expect(antipode.search_location).to eq("Hong Kong")
     expect(antipode.location_name).to eq("Juyjuy")

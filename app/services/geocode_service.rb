@@ -1,11 +1,10 @@
 class GeocodeService
-  def initialize(city, state)
-    @city = city&.gsub(" ", "+")
-    @state = state
+  def get_coordinates(city, state = nil)
+    get_location(city, state)[:results][0][:geometry][:location]
   end
 
-  def get_coordinates
-    parse(request_coordinates)[:results][0][:geometry][:location]
+  def get_location(city, state = nil)
+    parse(request_coordinates(city, state))
   end
 
   private
@@ -14,9 +13,9 @@ class GeocodeService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def request_coordinates
+  def request_coordinates(city, state)
     conn.get do |req|
-      req.params[:address] = "#{@city},+#{@state}"
+      req.params[:address] = "#{city},+#{state}"
     end
   end
 
