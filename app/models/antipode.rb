@@ -6,7 +6,6 @@ class Antipode
   def initialize(location_info)
     @city = location_info[:city]
     @search_location = geocode_city
-    @search_coordinates = geocode_coordinates
     @antipode_coordinates = request_antipode
     @location_name = reverse_geocode
     @forecast = get_antipode_forecast
@@ -19,7 +18,7 @@ class Antipode
   private
 
   def request_antipode
-    antipode_service.get_antipode(@search_coordinates)
+    antipode_service.get_antipode(geocode_coordinates)
   end
 
   def get_antipode_forecast
