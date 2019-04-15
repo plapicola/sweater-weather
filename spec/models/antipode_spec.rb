@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Antipode do
   it 'exists' do
-    antipode = Antipode.new({})
+    antipode = Antipode.new({city: "hongkong"})
 
     expect(antipode).to be_a Antipode
   end
