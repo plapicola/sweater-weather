@@ -16,5 +16,18 @@ RSpec.describe 'Users API', type: :request do
       expect(results).to have_key :api_key
       expect(User.count).to eq(1)
     end
+
+    it 'I receive a 400 when I attempt to create an account with bad credentials' do
+      body = {
+        email: "whatever@example.com",
+        password: "password",
+        password_confirmation: "paSSw0rD"
+      }
+      post '/api/v1/users', params: body
+
+
+      expect(response.status).to eq(400)
+      expect(User.count).to eq(0)
+    end
   end
 end
