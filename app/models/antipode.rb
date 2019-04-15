@@ -14,11 +14,11 @@ class Antipode
   private
 
   def request_antipode
-    coordinates ||= antipode_service.get_antipode(@search_coordinates)
+    antipode_service.get_antipode(@search_coordinates)
   end
 
   def get_antipode_forecast
-    WeatherService.new(@antipode_coordinates).request_forecast
+    CurrentWeather.from_request(weather_service.request_forecast)
   end
 
   def geocode_coordinates
@@ -43,6 +43,10 @@ class Antipode
 
   def antipode_service
     @antipode ||= AntipodeService.new
+  end
+
+  def weather_service
+    @weather ||= WeatherService.new(@antipode_coordinates)
   end
 end
 
