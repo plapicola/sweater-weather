@@ -14,7 +14,7 @@ RSpec.describe Antipode do
     antipode = Antipode.new(location_info)
 
     expect(antipode.search_location).to eq("Hong Kong")
-    expect(antipode.location_name).to eq("Juyjuy")
+    expect(antipode.location_name).to eq("Jujuy")
     expect(antipode.forecast).to be_a CurrentWeather
   end
 end
