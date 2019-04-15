@@ -1,4 +1,4 @@
-class Antipode
+class AntipodeFacade
   attr_reader :search_location,
               :location_name,
               :forecast
@@ -53,8 +53,3 @@ class Antipode
     @weather ||= WeatherService.new(@antipode_coordinates)
   end
 end
-
-# Steps: Geocode City, store result name
-# Feed into Instructor API
-# Reverse Geocode Result
-# Feed In to WeatherService
