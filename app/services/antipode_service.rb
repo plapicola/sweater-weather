@@ -23,7 +23,7 @@ class AntipodeService
   def conn
     Faraday.new(url: "http://amypode.herokuapp.com/api/v1/") do |faraday|
       faraday.adapter Faraday.default_adapter
-      faraday.headers[:api_key] = "oscar_the_grouch"
+      faraday.headers[:api_key] = ENV['AMYPODE_KEY']
     end
   end
 end
