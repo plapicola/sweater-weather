@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Background do
+RSpec.describe BackgroundFacade, type: :facade do
   it 'exists' do
-    background = Background.new({
+    background = BackgroundFacade.new({
       city: 'denver',
       state: 'co'
     })
 
-    expect(background).to be_a Background
+    expect(background).to be_a BackgroundFacade
   end
 
   it 'has_attributes' do
-    background = Background.new({
+    background = BackgroundFacade.new({
       city: 'denver',
       state: 'co'
     })

@@ -1,4 +1,4 @@
-class Background
+class BackgroundFacade
   def initialize(location_info)
     @city = location_info[:city]
     @state = location_info[:state]
