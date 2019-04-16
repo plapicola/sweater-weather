@@ -38,7 +38,7 @@ RSpec.describe 'Favorites API' do
       @user.cities.create(name: "Denver, CO")
       get '/api/v1/favorites', params: {
         api_key: @user.api_key
-      }.to_json,
+      },
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
@@ -59,7 +59,7 @@ RSpec.describe 'Favorites API' do
       @user.cities.create(name: "Denver, CO")
       get '/api/v1/favorites', params: {
         api_key: ""
-      }.to_json,
+      },
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
@@ -95,7 +95,7 @@ RSpec.describe 'Favorites API' do
       @user.cities.create(name: "Denver, CO")
       delete '/api/v1/favorites', params: {
         location: "Denver, CO",
-        api_key: @user.api_key
+        api_key: ""
       }.to_json,
       headers: {
         "Content-Type": "application/json",
