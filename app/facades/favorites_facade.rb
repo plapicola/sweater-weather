@@ -7,12 +7,6 @@ class FavoritesFacade < BaseFacade
     @user.id
   end
 
-  def favorites
-    @user.cities.map do |city|
-      FavoriteCity.new(city, request_weather(city.coordinates))
-    end
-  end
-
   def favorites_hash
     @user.cities.map do |city|
       city_hash = {}
