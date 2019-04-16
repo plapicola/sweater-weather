@@ -4,8 +4,8 @@ class ApplicationController < ActionController::API
 
   def location
     {
-      city: location_params.first.downcase,
-      state: location_params.last.downcase
+      city: location_params.first.downcase.strip,
+      state: location_params.last.downcase.strip
     }
   end
 

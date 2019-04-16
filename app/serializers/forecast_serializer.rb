@@ -1,5 +1,6 @@
 class ForecastSerializer
   include FastJsonapi::ObjectSerializer
+  set_type :forecast
   attributes :id, :name
 
   attribute :current_weather do |obj|
