@@ -10,6 +10,11 @@ class Api::V1::FavoritesController < ApplicationController
     @user.cities << find_location(location)
   end
 
+  def destroy
+    @user.favorites.find_by(city: find_location(location[:city], location[:state])).destroy
+    render json: FavoritesSerializer.new(FavoritesFacade.new(@user))
+  end
+
   private
 
   def validate_user!
