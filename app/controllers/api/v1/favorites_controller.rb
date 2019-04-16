@@ -13,7 +13,7 @@ class Api::V1::FavoritesController < ApplicationController
   def destroy
     favorite = @user.favorites.find_by(city: find_location(location[:city], location[:state]))
     favorite.destroy
-    render json: FavoritesSerializer.new(FavoriteFacade.new(favorite))
+    render json: FavoritesSerializer.new(FavoriteFacade.new(favorite.city))
   end
 
   private

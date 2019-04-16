@@ -80,14 +80,12 @@ RSpec.describe 'Favorites API' do
 
       favorites = JSON.parse(response.body, symbolize_names: true)
 
-      binding.pry
-
-      expect(favorites).to be_a Array
-      expect(favorites[0]).to have_key :location
-      expect(favorites[0]).to have_key :current_weather
-      expect(favorites[0][:location]).to eq("Denver, CO")
-      expect(favorites[0][:current_weather]).to have_key :data
-      expect(favorites[0][:current_weather][:data]).to have_key :attributes
+      expect(favorites).to be_a Hash
+      expect(favorites).to have_key :location
+      expect(favorites).to have_key :current_weather
+      expect(favorites[:location]).to eq("denver, co")
+      expect(favorites[:current_weather]).to have_key :data
+      expect(favorites[:current_weather][:data]).to have_key :attributes
       expect(Favorite.count).to eq(0)
     end
 
