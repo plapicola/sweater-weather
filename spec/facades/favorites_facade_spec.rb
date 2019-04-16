@@ -8,8 +8,8 @@ RSpec.describe FavoritesFacade, type: :facade do
   end
 
   describe 'instance methods' do
-    describe 'favorites' do
-      it 'returns a collection of FavoriteCity objects' do
+    describe 'favorites_hash' do
+      it 'returns a collection of hashes including location and current weather' do
         user = create(:user)
         user.cities.create(name: "Denver, CO",
                            latitude: 39.7392358,
@@ -17,9 +17,10 @@ RSpec.describe FavoritesFacade, type: :facade do
 
         facade = FavoritesFacade.new(user)
 
-        expect(facade.favorites).to be_a Array
-        expect(facade.favorites[0]).to be_a FavoriteCity
-        expect(facade.favorites[0].id).to eq(user.cities.first.id)
+        expect(facade.favorites_hash).to be_a Array
+        expect(facade.favorites_hash[0]).to have_key :location
+        expect(facade.favorites_hash[0]).to have_key :current_weather
+        expect(facade.favorites_hash[0][:current_weather]).to be_a CurrentWeatherSerializer
       end
     end
   end
