@@ -6,8 +6,6 @@ RSpec.describe City, type: :model do
     it {should validate_presence_of :name}
     it {should validate_presence_of :latitude}
     it {should validate_presence_of :longitude}
-    it {should have_many :favorites}
-    it {should have_many(:users).through(:favorites)}
     it {should validate_numericality_of(:latitude)
           .is_greater_than_or_equal_to(-180)
           .is_less_than_or_equal_to(180)
@@ -16,5 +14,10 @@ RSpec.describe City, type: :model do
           .is_greater_than_or_equal_to(-180)
           .is_less_than_or_equal_to(180)
         }
+  end
+
+  describe 'relationships' do
+    it {should have_many :favorites}
+    it {should have_many(:users).through(:favorites)}
   end
 end

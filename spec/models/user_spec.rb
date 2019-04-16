@@ -8,4 +8,9 @@ RSpec.describe User, type: :model do
     it {should have_secure_password}
     it {should validate_uniqueness_of :api_key}
   end
+
+  describe 'relationships' do
+    it {should have_many :favorites}
+    it {should have_many(:cities).through(:favorites)}
+  end
 end
