@@ -1,5 +1,7 @@
 class BaseFacade
 
+  include LocationHelper
+
   private
 
   def request_weather(coordinates)
@@ -13,17 +15,8 @@ class BaseFacade
   def request_location
     location = City.find_by(name: "#{@city}, #{@state}".strip)
     unless location
-      location = create_new_location
+      location = create_new_location(@city, @state)
     end
     location.coordinates
-  end
-
-  def create_new_location
-    coordinates = GeocodeService.new.get_coordinates(@city, @state)
-    City.create({
-      name: "#{@city}, #{@state}".strip,
-      latitude: coordinates[:lat],
-      longitude: coordinates[:lng]
-    })
   end
 end
