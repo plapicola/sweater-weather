@@ -8,12 +8,13 @@ class FavoritesFacade < BaseFacade
   end
 
   def favorites_hash
+    # Refactor me to not need extra hash
     @user.cities.map do |city|
-      city_hash = {}
-      city_hash[:location] = city.name
       weather = CurrentWeather.from_request(request_weather(city.coordinates))
-      city_hash[:current_weather] = CurrentWeatherSerializer.new(weather)
-      city_hash
+      {
+        location: city.name,
+        current_weather: CurrentWeatherSerializer.new(weather)
+      }
     end
   end
 end
