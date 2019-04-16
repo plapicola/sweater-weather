@@ -35,7 +35,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I can retreive my favorites' do
-      user.favorites.create(location: "Denver, CO")
+      @user.cities.create(name: "Denver, CO")
       get '/api/v1/favorites', params: {
         api_key: @user.api_key
       },
@@ -56,7 +56,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I receive a 401 if I request favorites with bad credentials' do
-      user.favorites.create(location: "Denver, CO")
+      @user.cities.create(name: "Denver, CO")
       get '/api/v1/favorites', params: {
         api_key: ""
       },
@@ -69,7 +69,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I can remove cities from my favorites' do
-      user.favorites.create(location: "Denver, CO")
+      @user.cities.create(name: "Denver, CO")
       delete '/api/v1/favorites', params: {
         location: "Denver, CO",
         api_key: @user.api_key
@@ -92,7 +92,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I receive a 401 if deleting with bad credentials' do
-      user.favorites.create(location: "Denver, CO")
+      @user.cities.create(name: "Denver, CO")
       delete '/api/v1/favorites', params: {
         location: "Denver, CO",
         api_key: @user.api_key
