@@ -35,7 +35,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I can retreive my favorites' do
-      @user.cities.create(name: "Denver, CO")
+      @user.cities.create(name: "Denver, CO", latitude: 39.7392358, longitude: -104.990251)
       get '/api/v1/favorites', params: {
         api_key: @user.api_key
       },
@@ -44,19 +44,18 @@ RSpec.describe 'Favorites API' do
         Accept: "application/json"
       }
 
-      favorites = JSON.parse(response.body, symbolize_names: true)[:data]
+      favorites = JSON.parse(response.body, symbolize_names: true)
 
       expect(favorites).to be_a Array
-      expect(favorites[0]).to have_key :id
-      expect(favorites[0]).to have_key :attributes
-      expect(favorites[0][:attributes]).to have_key :name
-      expect(favorites[0][:attributes][:name]).to eq("Denver, CO")
-      expect(favorites[0][:attributes]).to have_key :current_weather
-      expect(favorites[0][:attributes][:current_weather]).to have_key [:data]
+      expect(favorites[0]).to have_key :location
+      expect(favorites[0]).to have_key :current_weather
+      expect(favorites[0][:location]).to eq("Denver, CO")
+      expect(favorites[0][:current_weather]).to have_key :data
+      expect(favorites[0][:current_weather][:data]).to have_key :attributes
     end
 
     it 'I receive a 401 if I request favorites with bad credentials' do
-      @user.cities.create(name: "Denver, CO")
+      @user.cities.create(name: "Denver, CO", latitude: 39.7392358, longitude: -104.990251)
       get '/api/v1/favorites', params: {
         api_key: ""
       },
@@ -69,7 +68,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I can remove cities from my favorites' do
-      @user.cities.create(name: "Denver, CO")
+      @user.cities.create(name: "Denver, CO", latitude: 39.7392358, longitude: -104.990251)
       delete '/api/v1/favorites', params: {
         location: "Denver, CO",
         api_key: @user.api_key
@@ -92,7 +91,7 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I receive a 401 if deleting with bad credentials' do
-      @user.cities.create(name: "Denver, CO")
+      @user.cities.create(name: "Denver, CO", latitude: 39.7392358, longitude: -104.990251)
       delete '/api/v1/favorites', params: {
         location: "Denver, CO",
         api_key: ""
