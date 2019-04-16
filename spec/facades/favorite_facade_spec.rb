@@ -20,7 +20,7 @@ RSpec.describe FavoriteFacade, type: :facade do
         expect(favorites_hash).to have_key :location
         expect(favorites_hash).to have_key :current_weather
         expect(favorites_hash[:location]).to eq("Denver, CO")
-        expect(favorites_hash[:current_weather]).to have_key :temperature
+        expect(favorites_hash[:current_weather]).to be_a CurrentWeatherSerializer
       end
     end
   end
