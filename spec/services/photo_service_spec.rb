@@ -17,7 +17,9 @@ RSpec.describe PhotoService do
 
         service = PhotoService.new(location)
 
-        result = service.get_photo
+        result = VCR.use_cassette('services/photos') do
+          service.get_photo
+        end
 
         expect(result).to have_key :id
         expect(result).to have_key :owner

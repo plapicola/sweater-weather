@@ -7,14 +7,16 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'I can create new favorite cities' do
-      post "/api/v1/favorites", params: {
-        location: "Denver, CO",
-        api_key: @user.api_key
-      }.to_json,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+      VCR.use_cassette('requests/new_favorite') do
+        post "/api/v1/favorites", params: {
+          location: "Denver, CO",
+          api_key: @user.api_key
+        }.to_json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      end
 
       expect(response).to be_successful
       expect(Favorite.count).to eq(1)
@@ -36,14 +38,16 @@ RSpec.describe 'Favorites API' do
 
     it 'I can retreive my favorites' do
       @user.cities.create(name: "Denver, CO", latitude: 39.7392358, longitude: -104.990251)
-      get '/api/v1/favorites', params: {
-        api_key: @user.api_key
-      },
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-
+      VCR.use_cassette('requests/favorites_index') do
+        get '/api/v1/favorites', params: {
+          api_key: @user.api_key
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      end
+      
       favorites = JSON.parse(response.body, symbolize_names: true)
 
       expect(favorites).to be_a Array
@@ -69,14 +73,16 @@ RSpec.describe 'Favorites API' do
 
     it 'I can remove cities from my favorites' do
       @user.cities.create(name: "denver, co", latitude: 39.7392358, longitude: -104.990251)
-      delete '/api/v1/favorites', params: {
-        location: "Denver, CO",
-        api_key: @user.api_key
-      }.to_json,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        VCR.use_cassette('requests/delete_favorite') do
+        delete '/api/v1/favorites', params: {
+          location: "Denver, CO",
+          api_key: @user.api_key
+        }.to_json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      end
 
       favorites = JSON.parse(response.body, symbolize_names: true)
 

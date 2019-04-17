@@ -6,7 +6,9 @@ RSpec.describe 'Backgrounds API' do
       Rails.cache.clear
     end
     it 'I can request a background image for a location' do
-      get '/api/v1/backgrounds?location=denver,co'
+      VCR.use_cassette('requests/backgrounds') do
+        get '/api/v1/backgrounds?location=denver,co'
+      end
 
       image = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -18,8 +20,10 @@ RSpec.describe 'Backgrounds API' do
     it 'subsequent requests for a location are cached' do
       expect(PhotoService).to receive(:new).once.and_call_original
 
-      get '/api/v1/backgrounds?location=denver,co'
-      get '/api/v1/backgrounds?location=denver,co'
+      VCR.use_cassette('requests/backgrounds') do
+        get '/api/v1/backgrounds?location=denver,co'
+        get '/api/v1/backgrounds?location=denver,co'
+      end
     end
   end
 end

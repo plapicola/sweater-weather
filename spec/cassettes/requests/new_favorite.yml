@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=%7B:city=%3E%22denver%22,%20:state=%3E%22co%22%7D,%2B&key=<GOOGLE_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 17 Apr 2019 04:47:56 GMT
+      Expires:
+      - Thu, 18 Apr 2019 04:47:56 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Vary:
+      - Accept-Language
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '613'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=36
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,44,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "City Park",
+                       "short_name" : "City Park",
+                       "types" : [ "establishment", "park", "point_of_interest" ]
+                    },
+                    {
+                       "long_name" : "2001",
+                       "short_name" : "2001",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Colorado Blvd",
+                       "short_name" : "Colorado Blvd",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "City Park",
+                       "short_name" : "City Park",
+                       "types" : [ "neighborhood", "political" ]
+                    },
+                    {
+                       "long_name" : "Denver",
+                       "short_name" : "Denver",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Denver County",
+                       "short_name" : "Denver County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Colorado",
+                       "short_name" : "CO",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "80205",
+                       "short_name" : "80205",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "City Park, 2001 Colorado Blvd, Denver, CO 80205, USA",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 39.7476212,
+                       "lng" : -104.9498084
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 39.7489701802915,
+                          "lng" : -104.9484594197085
+                       },
+                       "southwest" : {
+                          "lat" : 39.7462722197085,
+                          "lng" : -104.9511573802915
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJJyDOGlJ5bIcRQ-oSnAOOwf8",
+                 "plus_code" : {
+                    "compound_code" : "P3X2+23 Denver, Colorado, United States",
+                    "global_code" : "85FQP3X2+23"
+                 },
+                 "types" : [ "establishment", "park", "point_of_interest" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Wed, 17 Apr 2019 04:47:56 GMT
+recorded_with: VCR 4.0.0

@@ -16,7 +16,9 @@ RSpec.describe WeatherService, type: :service do
   describe 'instance methods' do
     describe 'get_forecast' do
       it 'requests the forecast for the services coordinates' do
-        results = @service.get_forecast
+        results = VCR.use_cassette('services/weather') do
+          @service.get_forecast
+        end
 
         expect(results).to be_a Hash
         expect(results).to have_key :currently

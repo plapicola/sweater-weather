@@ -17,10 +17,12 @@ RSpec.describe FavoritesFacade, type: :facade do
 
         facade = FavoritesFacade.new(user)
 
-        expect(facade.favorites_hash).to be_a Array
-        expect(facade.favorites_hash[0]).to have_key :location
-        expect(facade.favorites_hash[0]).to have_key :current_weather
-        expect(facade.favorites_hash[0][:current_weather]).to be_a CurrentWeatherSerializer
+        VCR.use_cassette('facades/favorites') do
+          expect(facade.favorites_hash).to be_a Array
+          expect(facade.favorites_hash[0]).to have_key :location
+          expect(facade.favorites_hash[0]).to have_key :current_weather
+          expect(facade.favorites_hash[0][:current_weather]).to be_a CurrentWeatherSerializer
+        end
       end
     end
   end
