@@ -56,8 +56,8 @@ GEM
     erubi (1.8.0)
     factory_bot (5.0.2)
       activesupport (>= 4.2.0)
-    factory_bot_rails (5.0.1)
-      factory_bot (~> 5.0.0)
+    factory_bot_rails (5.0.2)
+      factory_bot (~> 5.0.2)
       railties (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -128,6 +128,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -185,6 +186,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.3)
+  redis (~> 4.0)
   rspec-rails
   shoulda-matchers
   simplecov
