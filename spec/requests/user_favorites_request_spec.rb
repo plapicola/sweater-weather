@@ -47,7 +47,7 @@ RSpec.describe 'Favorites API' do
           Accept: "application/json"
         }
       end
-      
+
       favorites = JSON.parse(response.body, symbolize_names: true)
 
       expect(favorites).to be_a Array
@@ -108,6 +108,70 @@ RSpec.describe 'Favorites API' do
 
       expect(response.status).to eq(401)
       expect(Favorite.count).to eq(1)
+    end
+
+    it 'I can add, view, and remove a favorite' do
+      VCR.use_cassette('requests/favorite_workflow') do
+        # Add favorites
+        post "/api/v1/favorites", params: {
+          location: "denver, co",
+          api_key: @user.api_key
+        }.to_json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+        post "/api/v1/favorites", params: {
+          location: "seattle, wa",
+          api_key: @user.api_key
+        }.to_json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+
+        # Get favorites
+        get '/api/v1/favorites', params: {
+          api_key: @user.api_key
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+
+        # Favorites should have Denver and be 2 in length
+        favorites = JSON.parse(response.body, symbolize_names: true)
+
+        expect(favorites).to be_a Array
+        expect(favorites.length).to eq(2)
+        expect(favorites[0][:location]).to eq("denver, co")
+
+        # Delete a favorite
+        delete '/api/v1/favorites', params: {
+          location: "denver, co",
+          api_key: @user.api_key
+        }.to_json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+
+        # Get favorites to validate removal
+        get '/api/v1/favorites', params: {
+          api_key: @user.api_key
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+
+        # Expect favorite to be of length 1 and not include denver
+        favorites = JSON.parse(response.body, symbolize_names: true)
+
+        expect(favorites).to be_a Array
+        expect(favorites.length).to eq(1)
+        expect(favorites[0][:location]).to eq("seattle, wa")
+      end
     end
   end
 end
