@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Forecast API', type: :request do
   context 'as a visitor' do
+    before :each do
+      Rails.cache.clear
+    end
+
     it "I can request the current forecast for a city, state" do
       get '/api/v1/forecast?location=denver,co'
 
@@ -43,6 +47,13 @@ RSpec.describe 'Forecast API', type: :request do
       expect(daily_forecast[0][:attributes]).to have_key :percipitation_chance
       expect(daily_forecast[0][:attributes]).to have_key :max_temperature
       expect(daily_forecast[0][:attributes]).to have_key :min_temperature
+    end
+
+    it 'subsequent requests are cached' do
+      expect(WeatherService).to receive(:new).once.and_call_original
+
+      get '/api/v1/forecast?location=denver,co'
+      get '/api/v1/forecast?location=denver,co'
     end
   end
 end
