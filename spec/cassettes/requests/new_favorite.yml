@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/geocode/json?address=%7B:city=%3E%22denver%22,%20:state=%3E%22co%22%7D,%2B&key=<GOOGLE_API_KEY>
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=denver,%2Bco&key=<GOOGLE_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Wed, 17 Apr 2019 04:47:56 GMT
+      - Wed, 17 Apr 2019 18:19:10 GMT
       Expires:
-      - Thu, 18 Apr 2019 04:47:56 GMT
+      - Thu, 18 Apr 2019 18:19:10 GMT
       Cache-Control:
       - public, max-age=86400
       Vary:
@@ -33,13 +33,13 @@ http_interactions:
       Server:
       - mafe
       Content-Length:
-      - '613'
+      - '448'
       X-Xss-Protection:
       - '0'
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=36
+      - gfet4t7; dur=14
       Alt-Svc:
       - quic=":443"; ma=2592000; v="46,44,43,39"
     body:
@@ -49,26 +49,6 @@ http_interactions:
            "results" : [
               {
                  "address_components" : [
-                    {
-                       "long_name" : "City Park",
-                       "short_name" : "City Park",
-                       "types" : [ "establishment", "park", "point_of_interest" ]
-                    },
-                    {
-                       "long_name" : "2001",
-                       "short_name" : "2001",
-                       "types" : [ "street_number" ]
-                    },
-                    {
-                       "long_name" : "Colorado Blvd",
-                       "short_name" : "Colorado Blvd",
-                       "types" : [ "route" ]
-                    },
-                    {
-                       "long_name" : "City Park",
-                       "short_name" : "City Park",
-                       "types" : [ "neighborhood", "political" ]
-                    },
                     {
                        "long_name" : "Denver",
                        "short_name" : "Denver",
@@ -88,41 +68,42 @@ http_interactions:
                        "long_name" : "United States",
                        "short_name" : "US",
                        "types" : [ "country", "political" ]
-                    },
-                    {
-                       "long_name" : "80205",
-                       "short_name" : "80205",
-                       "types" : [ "postal_code" ]
                     }
                  ],
-                 "formatted_address" : "City Park, 2001 Colorado Blvd, Denver, CO 80205, USA",
+                 "formatted_address" : "Denver, CO, USA",
                  "geometry" : {
-                    "location" : {
-                       "lat" : 39.7476212,
-                       "lng" : -104.9498084
-                    },
-                    "location_type" : "ROOFTOP",
-                    "viewport" : {
+                    "bounds" : {
                        "northeast" : {
-                          "lat" : 39.7489701802915,
-                          "lng" : -104.9484594197085
+                          "lat" : 39.91424689999999,
+                          "lng" : -104.6002959
                        },
                        "southwest" : {
-                          "lat" : 39.7462722197085,
-                          "lng" : -104.9511573802915
+                          "lat" : 39.614431,
+                          "lng" : -105.109927
+                       }
+                    },
+                    "location" : {
+                       "lat" : 39.7392358,
+                       "lng" : -104.990251
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 39.91424689999999,
+                          "lng" : -104.6002959
+                       },
+                       "southwest" : {
+                          "lat" : 39.614431,
+                          "lng" : -105.109927
                        }
                     }
                  },
-                 "place_id" : "ChIJJyDOGlJ5bIcRQ-oSnAOOwf8",
-                 "plus_code" : {
-                    "compound_code" : "P3X2+23 Denver, Colorado, United States",
-                    "global_code" : "85FQP3X2+23"
-                 },
-                 "types" : [ "establishment", "park", "point_of_interest" ]
+                 "place_id" : "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
+                 "types" : [ "locality", "political" ]
               }
            ],
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Wed, 17 Apr 2019 04:47:56 GMT
+  recorded_at: Wed, 17 Apr 2019 18:19:10 GMT
 recorded_with: VCR 4.0.0
