@@ -7,7 +7,7 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def create
-    @user.cities << find_location(location)
+    @user.cities << find_location(location[:city], location[:state])
   end
 
   def destroy
