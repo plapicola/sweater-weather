@@ -7,7 +7,9 @@ RSpec.describe 'Forecast API', type: :request do
     end
 
     it "I can request the current forecast for a city, state" do
-      get '/api/v1/forecast?location=denver,co'
+      VCR.use_cassette('requests/weather') do
+        get '/api/v1/forecast?location=denver,co'
+      end
 
       weather_info = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -52,8 +54,10 @@ RSpec.describe 'Forecast API', type: :request do
     it 'subsequent requests are cached' do
       expect(WeatherService).to receive(:new).once.and_call_original
 
-      get '/api/v1/forecast?location=denver,co'
-      get '/api/v1/forecast?location=denver,co'
+      VCR.use_cassette('requests/weather') do
+        get '/api/v1/forecast?location=denver,co'
+        get '/api/v1/forecast?location=denver,co'
+      end
     end
   end
 end

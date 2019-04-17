@@ -7,6 +7,8 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'vcr'
+require 'webmock'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -69,4 +71,13 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+VCR.configure do |config|
+  config.hook_into :webmock
+  config.cassette_library_dir = './spec/cassettes'
+  config.filter_sensitive_data("<GOOGLE_API_KEY>") { ENV['GOOGLE_GEOCODE_KEY']}
+  config.filter_sensitive_data("<FLICKR_API_KEY>") { ENV['FLICKR_KEY'] }
+  config.filter_sensitive_data("<DARKSKY_KEY>") { ENV['DARKSKY_KEY'] }
+  config.filter_sensitive_data("<FLICKR_SECRET>") { ENV['FLICKR_SECRET'] }
 end

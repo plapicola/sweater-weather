@@ -17,7 +17,9 @@ RSpec.describe GeocodeService, type: :service do
           lng: -104.990251
         }
 
-        expect(service.get_coordinates("denver", "co")).to eq(expected)
+        VCR.use_cassette('services/geocode') do
+          expect(service.get_coordinates("denver", "co")).to eq(expected)
+        end
       end
     end
   end

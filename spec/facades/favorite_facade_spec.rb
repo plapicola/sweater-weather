@@ -15,7 +15,9 @@ RSpec.describe FavoriteFacade, type: :facade do
 
         facade = FavoriteFacade.new(city)
 
-        favorites_hash = facade.favorites_hash
+        favorites_hash = VCR.use_cassette('services/favorite') do
+          facade.favorites_hash
+        end
 
         expect(favorites_hash).to have_key :location
         expect(favorites_hash).to have_key :current_weather

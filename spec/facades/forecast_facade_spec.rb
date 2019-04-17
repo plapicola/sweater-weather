@@ -2,13 +2,17 @@ require 'rails_helper'
 
 RSpec.describe ForecastFacade, type: :facade do
   it 'exists' do
-    forecast = ForecastFacade.new(city: 'denver', state: 'co')
+    forecast = VCR.use_cassette('facades/forecast') do
+      ForecastFacade.new(city: 'denver', state: 'co')
+    end
 
     expect(forecast).to be_a ForecastFacade
   end
 
   it 'has attributes' do
-    forecast = ForecastFacade.new({city: "denver", state: "co"})
+    forecast = VCR.use_cassette('facades/forecast') do
+      ForecastFacade.new({city: "denver", state: "co"})
+    end
 
     expect(forecast.id).to eq("denver, co")
     expect(forecast.city).to eq("denver")
